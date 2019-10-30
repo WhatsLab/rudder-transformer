@@ -14,6 +14,11 @@ const getMappingConfig = (config, dir) => {
   return mappingConfig;
 };
 
+const isPrimitive = arg => {
+  var type = typeof arg;
+  return arg == null || (type != "object" && type != "function");
+};
+
 const isDefined = x => !_.isUndefined(x);
 
 const toStringValues = obj => {
@@ -51,11 +56,18 @@ const defaultPostRequestConfig = {
   requestMethod: "POST"
 };
 
+const defaultPutRequestConfig = {
+  requestFormat: "JSON",
+  requestMethod: "PUT"
+};
+
 module.exports = {
   getMappingConfig,
   toStringValues,
   getDateInFormat,
   removeUndefinedValues,
   defaultGetRequestConfig,
-  defaultPostRequestConfig
+  defaultPostRequestConfig,
+  defaultPutRequestConfig,
+  isPrimitive
 };
